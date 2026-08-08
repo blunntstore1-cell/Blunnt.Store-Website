@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
     if (!response.ok) return res.status(response.status).json({ error: 'Razorpay could not create the order.' });
     return res.status(200).json({ order: { id: order.id, amount: order.amount, currency: order.currency }, pricing, keyId: process.env.RAZORPAY_KEY_ID });
   } catch (error) {
-    console.error('CREATE ORDER ERROR:', error);
-    return res.status(500).json({ error: 'Unable to create a secure order.' });
-  }
+  console.error('CREATE ORDER ERROR:', error);
+  return res.status(500).json({ error: `DEBUG: ${error.message}` });
+}
 };
