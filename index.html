@@ -67,7 +67,7 @@
         .limited-offer { display: inline-block; margin-top: 7px; padding: 4px 6px; border: 1px solid #FF3B30; color: #FF3B30; font-size: 9px; letter-spacing: .07em; }
         .detail-copy { margin: 24px 0; font-size: 12px; line-height: 1.75; }
         .detail-list { margin: 0 0 24px; padding: 14px 0; border-top: 1px solid #D4C5A9; border-bottom: 1px solid #D4C5A9; font-size: 11px; line-height: 1.9; list-style: none; }
-        .size-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 10px 0 20px; }
+        .size-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 10px 0 20px; }
         .size-picker button { padding: 11px 5px; border: 1px solid #D4C5A9; background: #0A0A0A; color: #D4C5A9; cursor: pointer; font: inherit; font-size: 11px; }
         .size-picker button[aria-pressed="true"] { background: #D4C5A9; color: #0A0A0A; }
         .size-picker button:disabled { cursor: not-allowed; opacity: .45; text-decoration: line-through; }
@@ -203,7 +203,6 @@
                         <span class="border border-borderGray px-2 py-1 text-gray-400">S</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">M</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">L</span>
-                        <span class="border border-borderGray px-2 py-1 text-gray-400 line-through">XL / SOLD OUT</span>
                     </div>
                     <button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button>
                 </div>
@@ -224,7 +223,6 @@
                         <span class="border border-borderGray px-2 py-1 text-gray-400">S</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">M</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">L</span>
-                        <span class="border border-borderGray px-2 py-1 text-gray-400 line-through">XL / SOLD OUT</span>
                     </div>
                     <button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button>
                 </div>
@@ -233,19 +231,18 @@
             <article class="border border-borderGray bg-cardDark flex flex-col group product-trigger" data-product="internet" tabindex="0" role="button" aria-label="View The Internet Never Forgets t-shirt">
                 <div class="aspect-[4/5] bg-black relative overflow-hidden flex items-center justify-center border-b border-borderGray">
                     <img src="img/sku3-model-front.png" alt="The Internet Never Forgets t-shirt" class="w-full h-full object-cover">
-                    <div class="absolute top-3 left-3 bg-systemBlack border border-borderGray text-[10px] px-2 py-1 text-gray-400">FADED BLACK</div>
+                    <div class="absolute top-3 left-3 bg-systemBlack border border-borderGray text-[10px] px-2 py-1 text-gray-400">BLACK</div>
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex justify-between items-start mb-2 gap-2">
                         <h3 class="font-bold text-sm tracking-wide">THE INTERNET NEVER FORGETS</h3>
                         <span class="text-errorRed font-bold text-sm text-right"><s class="text-gray-400 font-normal">₹1699</s><br>₹899</span>
                     </div>
-                    <p class="text-xs text-gray-400 mb-6 flex-grow">A browser-history warning for people who never clear the cache.</p>
+                    <p class="text-xs text-gray-400 mb-6 flex-grow">A clean black tee for people who know the browser history keeps receipts. No fade, no acid wash.</p>
                     <div class="flex gap-1.5 mb-6 text-[10px]">
                         <span class="border border-borderGray px-2 py-1 text-gray-400">S</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">M</span>
                         <span class="border border-borderGray px-2 py-1 text-gray-400">L</span>
-                        <span class="border border-borderGray px-2 py-1 text-gray-400 line-through">XL / SOLD OUT</span>
                     </div>
                     <button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button>
                 </div>
@@ -262,7 +259,7 @@
                         <span class="text-errorRed font-bold text-sm text-right"><s class="text-gray-400 font-normal">₹1699</s><br>₹999</span>
                     </div>
                     <p class="text-xs text-gray-400 mb-6 flex-grow">“Sonam, it’s done, bro.” Minimal front. Very non-minimal back.</p>
-                    <div class="flex gap-1.5 mb-6 text-[10px]"><span class="border border-borderGray px-2 py-1 text-gray-400">S</span><span class="border border-borderGray px-2 py-1 text-gray-400">M</span><span class="border border-borderGray px-2 py-1 text-gray-400">L</span><span class="border border-borderGray px-2 py-1 text-gray-400 line-through">XL / SOLD OUT</span></div>
+                    <div class="flex gap-1.5 mb-6 text-[10px]"><span class="border border-borderGray px-2 py-1 text-gray-400">S</span><span class="border border-borderGray px-2 py-1 text-gray-400">M</span><span class="border border-borderGray px-2 py-1 text-gray-400">L</span></div>
                     <button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button>
                 </div>
             </article>
@@ -295,8 +292,8 @@
             </div>
         </div>
         <div class="flex flex-col md:items-end justify-center text-xs text-gray-500 gap-2">
-            <p>SUPPORT: SUPPORT@BLUNNT.IN</p>
-            <p>WHATSAPP: +91 99090 XXXXX</p>
+            <p>SUPPORT: CONTACT@BLUNNT.STORE</p>
+            <p>WHATSAPP: +91 75066 35511</p>
             <p class="text-gray-600 mt-2">HOSTED ON VERCEL // SECURED BY RAZORPAY</p>
         </div>
     </footer>
@@ -324,7 +321,7 @@
                     <p class="detail-copy" id="detail-description"></p>
                     <ul class="detail-list"><li>• 240 GSM heavyweight cotton</li><li>• Oversized unisex fit</li><li>• Screen-printed front and back</li><li>• Ships in 2–4 business days</li></ul>
                     <p class="text-xs tracking-widest">SELECT YOUR SIZE</p>
-                    <div class="size-picker" id="size-picker" aria-label="Choose a size"><button type="button" data-size="S">S</button><button type="button" data-size="M">M</button><button type="button" data-size="L">L</button><button type="button" data-size="XL" disabled aria-label="XL sold out">XL SOLD OUT</button></div>
+                    <div class="size-picker" id="size-picker" aria-label="Choose a size"><button type="button" data-size="S">S</button><button type="button" data-size="M">M</button><button type="button" data-size="L">L</button></div>
                     <p class="size-message" id="size-message" role="status"></p>
                     <button class="detail-action" id="start-checkout" type="button">ADD TO CART</button>
                 </div>
@@ -380,8 +377,8 @@
         const catalogue = {
             coke: { name: 'MENTALLY HERE RN', price: 999, mrp: 1699, description: 'Heavyweight red cotton, front-and-back artwork, and a thought that should have stayed in drafts.', views: ['FRONT MODEL', 'BACK DETAIL', 'FLAT FRONT', 'FLAT BACK'], images: ['img/sku1-model-front.png', 'img/sku1-model-back.png', 'img/sku1-flat-front.png', 'img/sku1-flat-back.png'] },
             spotify: { name: "I MOVED ON / MY SPOTIFY DIDN'T", price: 999, mrp: 1699, description: 'Deadpan front text with an oversized streaming logotype on the back. Your top genre remains emotional administrative work.', views: ['FRONT MODEL', 'BACK MODEL', 'FLAT FRONT', 'FLAT BACK'], images: ['img/sku2-model-front.png', 'img/sku2-model-back.png', 'img/sku2-flat-front.png', 'img/sku2-flat-back.png'] },
-            internet: { name: 'THE INTERNET NEVER FORGETS', price: 899, mrp: 1699, description: 'A browser-history warning on a heavyweight oversized blank. Some uploads are forever.', views: ['FRONT MODEL', 'BACK MODEL', 'FLAT FRONT', 'FLAT BACK'], images: ['img/sku3-model-front.png', 'img/sku3-model-back.png', 'img/sku3-flat-front.png', 'img/sku3-flat-back.png'] },
-            finalcut: { name: 'FINAL CUT', price: 999, mrp: 1699, description: '“Sonam, it’s done, bro.” A calm front, an extremely committed back, and no director’s commentary.', views: ['FRONT MODEL', 'BACK MODEL', 'FLAT FRONT'], images: ['img/sku4-model-front.png', 'img/sku4-model-back.png', 'img/sku4-flat-front.png'] }
+            internet: { name: 'THE INTERNET NEVER FORGETS', price: 899, mrp: 1699, description: 'A clean black oversized tee with a small front statement. No fade, no acid wash—just a reminder that the internet keeps receipts.', views: ['FRONT MODEL', 'BACK MODEL', 'FLAT FRONT', 'FLAT BACK'], images: ['img/sku3-model-front.png', 'img/sku3-model-back.png', 'img/sku3-flat-front.png', 'img/sku3-flat-back.png'] },
+            finalcut: { name: 'FINAL CUT', price: 999, mrp: 1699, description: '“Sonam, it’s done, bro.” A calm front, an extremely committed back, and no director’s commentary.', views: ['FRONT MODEL', 'BACK MODEL', 'FLAT FRONT', 'FLAT BACK'], images: ['img/sku4-model-front.png', 'img/sku4-model-back.png', 'img/sku4-flat-front.png', 'img/sku4-flat-back.png'] }
         };
         const productModal = document.querySelector('#product-modal');
         const cartModal = document.querySelector('#cart-modal');
@@ -424,10 +421,7 @@
             document.querySelector('#detail-price').innerHTML = `₹${selectedProduct.price}${selectedProduct.mrp ? ` <span class="detail-mrp">₹${selectedProduct.mrp}</span>` : ''}`;
             document.querySelector('#limited-offer').hidden = !selectedProduct.mrp;
             document.querySelector('#detail-description').textContent = selectedProduct.description;
-            document.querySelectorAll('#size-picker button').forEach(button => {
-                button.setAttribute('aria-pressed', 'false');
-                button.disabled = button.dataset.size === 'XL';
-            });
+            document.querySelectorAll('#size-picker button').forEach(button => button.setAttribute('aria-pressed', 'false'));
             document.querySelector('#size-message').textContent = '';
             renderSlide();
             setModalState(productModal, true);
@@ -461,7 +455,6 @@
         });
         document.querySelector('#size-picker').addEventListener('click', event => {
             const button = event.target.closest('[data-size]'); if (!button) return;
-            if (button.disabled) { document.querySelector('#size-message').textContent = 'XL IS OFFLINE. THE DROP MOVED FAST.'; return; }
             selectedSize = button.dataset.size;
             document.querySelectorAll('#size-picker button').forEach(item => item.setAttribute('aria-pressed', item === button));
             document.querySelector('#size-message').textContent = '';
