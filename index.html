@@ -96,6 +96,9 @@
         .checkout-form input:focus, .checkout-form textarea:focus { border-color: #FF3B30; }
         .checkout-form textarea { min-height: 86px; resize: vertical; }
         .checkout-status { min-height: 18px; margin: 4px 0 0; color: #FF3B30; font-size: 10px; line-height: 1.4; }
+        .order-success { margin-top: 24px; padding: 20px; border: 1px solid #D4C5A9; }
+        .order-success h2 { margin: 8px 0 16px; font-size: 32px; line-height: .95; }
+        .order-success-number { display: inline-block; margin: 10px 0 18px; padding: 9px 11px; border: 1px solid #FF3B30; color: #FF3B30; font-size: 14px; font-weight: 700; letter-spacing: .06em; }
         @media (max-width: 760px) { .product-modal, .checkout-modal, .cart-modal { padding: 0; } .modal-panel { width: 100%; min-height: 100dvh; max-height: 100dvh; border-width: 0; } .modal-layout { grid-template-columns: 1fr; } .gallery { border-right: 0; border-bottom: 1px solid #D4C5A9; } .gallery-main { aspect-ratio: 4 / 5; } .product-detail { min-height: 0; padding: 58px 20px 24px; } .checkout-panel, .cart-panel { min-height: 100dvh; margin: 0; padding: 58px 20px 24px; } .gallery-controls { position: sticky; bottom: 0; background: #0A0A0A; } }
     </style>
 </head>
@@ -358,6 +361,14 @@
                 <button class="detail-action" id="pay-button" type="submit">CONTINUE TO PAYMENT</button>
                 <p class="checkout-status" id="checkout-status" role="status"></p>
             </form>
+            <div class="order-success" id="order-success" hidden>
+                <p class="text-xs text-errorRed tracking-widest">[ ORDER CONFIRMED ]</p>
+                <h2>THANK YOU.</h2>
+                <p class="text-xs leading-relaxed">Your order is confirmed and a confirmation email is on its way.</p>
+                <p class="order-success-number" id="order-success-number"></p>
+                <div class="checkout-summary" id="order-success-summary"></div>
+                <button class="detail-action" type="button" data-close-modal>BACK TO THE DROP</button>
+            </div>
         </div>
     </section>
 
@@ -472,6 +483,9 @@
             if (!cart.length) return;
             const pricing = getPricing();
             document.querySelector('#checkout-summary').innerHTML = cart.map(item => `<strong>${catalogue[item.sku].name}</strong> · ${item.size} × ${item.quantity}<br>`).join('') + `<br>SUBTOTAL: ₹${Math.round(pricing.subtotal)}<br>${pricing.bundleDiscount ? `BUNDLE DISCOUNT: −₹${Math.round(pricing.bundleDiscount)}<br>` : ''}${pricing.promoDiscount ? `OG15 DISCOUNT: −₹${Math.round(pricing.promoDiscount)}<br>` : ''}SHIPPING: ₹${pricing.shipping}<br><strong>ORDER TOTAL: ₹${Math.round(pricing.total)}</strong>`;
+            document.querySelector('#checkout-form').hidden = false;
+            document.querySelector('#checkout-summary').hidden = false;
+            document.querySelector('#order-success').hidden = true;
             setModalState(cartModal, false); setModalState(checkoutModal, true);
         });
         document.querySelectorAll('[data-close-modal]').forEach(button => button.addEventListener('click', () => { setModalState(productModal, false); setModalState(cartModal, false); setModalState(checkoutModal, false); }));
@@ -487,9 +501,16 @@
                 const { order, keyId } = await orderResponse.json();
                 if (!window.Razorpay || !order?.id || !keyId) throw new Error('Secure payment is not configured yet.');
                 const checkout = new Razorpay({ key: keyId, amount: order.amount, currency: order.currency, name: 'BLUNNT.*', description: `${getPricing().quantity} ITEM${getPricing().quantity === 1 ? '' : 'S'} / BAG`, order_id: order.id, prefill: { name: customer.name, email: customer.email, contact: customer.phone }, theme: { color: '#FF3B30' }, handler: async response => {
-                    const verification = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...response, items: cart, customer }) });
-                    if (!verification.ok) throw new Error('Payment could not be verified.');
-                    cart = []; promoCode = ''; saveCart(); renderCart(); status.textContent = 'PAYMENT VERIFIED. ORDER CONFIRMATION INCOMING.'; payButton.textContent = 'ORDER CONFIRMED';
+                    const verification = await fetch('/api/verify-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(response) });
+                    const verified = await verification.json();
+                    if (!verification.ok || !verified.order?.orderNumber) throw new Error(verified.error || 'Payment could not be verified.');
+                    const confirmedOrder = verified.order;
+                    document.querySelector('#order-success-number').textContent = `ORDER #${confirmedOrder.orderNumber}`;
+                    document.querySelector('#order-success-summary').innerHTML = (confirmedOrder.items || []).map(item => `<strong>${item.product_name}</strong> · ${item.size} × ${item.quantity}<br>`).join('') + `<br><strong>ORDER TOTAL: ₹${Math.round((confirmedOrder.pricing?.total || 0) / 100)}</strong>`;
+                    document.querySelector('#checkout-form').hidden = true;
+                    document.querySelector('#checkout-summary').hidden = true;
+                    document.querySelector('#order-success').hidden = false;
+                    cart = []; promoCode = ''; saveCart(); renderCart(); payButton.textContent = 'ORDER CONFIRMED';
                 }});
                 checkout.on('payment.failed', () => { status.textContent = 'PAYMENT WAS NOT COMPLETED. PLEASE TRY AGAIN.'; });
                 checkout.open();

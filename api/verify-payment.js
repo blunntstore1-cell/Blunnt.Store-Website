@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { confirmPaidOrder, sendOrderEmails } = require('./_lib/order-service');
 
 function getBody(req) {
   if (!req.body) return {};
@@ -16,9 +17,12 @@ module.exports = async (req, res) => {
     const valid = expected.length === signature.length && crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
     if (!valid) return res.status(400).json({ error: 'Payment signature verification failed.' });
 
-    // Persist the verified order and trigger fulfilment here once an order database is connected.
-    return res.status(200).json({ verified: true, paymentId, orderId });
-  } catch {
-    return res.status(500).json({ error: 'Unable to verify payment.' });
+    const { order, newlyPaid } = await confirmPaidOrder({ razorpayOrderId: orderId, razorpayPaymentId: paymentId });
+    // Payment remains safely recorded if Brevo is temporarily unavailable.
+    if (newlyPaid) await sendOrderEmails(order);
+    return res.status(200).json({ verified: true, order: { orderNumber: order.order_number, customerName: order.customer_name, items: order.items, pricing: order.pricing } });
+  } catch (error) {
+    console.error('VERIFY PAYMENT ERROR:', error);
+    return res.status(500).json({ error: 'Unable to verify and record payment.' });
   }
 };

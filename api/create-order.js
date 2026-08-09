@@ -4,6 +4,8 @@ const PRODUCT_PRICES = {
   internet: 89900,
   finalcut: 99900,
 };
+const { createPendingOrder } = require('./_lib/order-service');
+const PRODUCT_NAMES = { coke: 'MENTALLY HERE RN', spotify: "I MOVED ON / MY SPOTIFY DIDN'T", internet: 'THE INTERNET NEVER FORGETS', finalcut: 'FINAL CUT' };
 
 // Keep this in sync with the storefront configuration. Set false to close OG15.
 const PROMO_ENABLED = true;
@@ -35,10 +37,11 @@ module.exports = async (req, res) => {
     const { items, customer = {}, promoCode } = getBody(req);
     if (!Array.isArray(items) || !items.length || items.length > 10) return res.status(400).json({ error: 'Your bag is invalid.' });
     const validItems = items.map(({ sku, size, quantity }) => ({ sku, size, quantity: Number(quantity) }));
-    const isValid = validItems.every(item => PRODUCT_PRICES[item.sku] && ['S', 'M', 'L', 'XL'].includes(item.size) && Number.isInteger(item.quantity) && item.quantity > 0 && item.quantity <= 10);
+    const isValid = validItems.every(item => PRODUCT_PRICES[item.sku] && ['S', 'M', 'L'].includes(item.size) && Number.isInteger(item.quantity) && item.quantity > 0 && item.quantity <= 10);
     if (!isValid) return res.status(400).json({ error: 'Invalid product, size, or quantity.' });
     const pricing = calculatePricing(validItems, promoCode);
     if (!customer.name || !customer.email || !customer.phone || !customer.address) return res.status(400).json({ error: 'Customer details are incomplete.' });
+    if (!/^\S+@\S+\.\S+$/.test(customer.email) || customer.name.length > 120 || customer.phone.length > 40 || customer.address.length > 1000) return res.status(400).json({ error: 'Customer details are invalid.' });
     if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) return res.status(500).json({ error: 'Payment service is not configured.' });
 
     const authorization = Buffer.from(`${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`).toString('base64');
@@ -50,6 +53,9 @@ module.exports = async (req, res) => {
     });
     const order = await response.json();
     if (!response.ok) return res.status(response.status).json({ error: 'Razorpay could not create the order.' });
+    const orderItems = validItems.map(item => ({ sku: item.sku, product_name: PRODUCT_NAMES[item.sku], size: item.size, quantity: item.quantity, unit_price: PRODUCT_PRICES[item.sku], total_price: PRODUCT_PRICES[item.sku] * item.quantity }));
+    const orderPricing = { currency: 'INR', subtotal: pricing.subtotal, bundle_discount: pricing.bundleDiscount, promo_discount: pricing.promoDiscount, shipping: pricing.shipping, total: pricing.total };
+    await createPendingOrder({ razorpayOrderId: order.id, customer, items: orderItems, pricing: orderPricing, promoCode: PROMO_ENABLED && String(promoCode || '').toUpperCase() === PROMO_CODE ? PROMO_CODE : null });
     return res.status(200).json({ order: { id: order.id, amount: order.amount, currency: order.currency }, pricing, keyId: process.env.RAZORPAY_KEY_ID });
     } catch (error) {
     console.error('CREATE ORDER ERROR:', error);
