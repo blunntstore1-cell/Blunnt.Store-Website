@@ -106,7 +106,7 @@
 
     <div class="bg-errorRed text-black text-xs font-bold py-2 overflow-hidden whitespace-nowrap tracking-widest relative z-50">
         <div class="inline-block animate-marquee">
-            ⚠️ SYSTEM NOTICE: BUNDLE &amp; SAVE — 2-TEE 15% OFF // 3-TEE 25% OFF // 4+ TEE 30% OFF // USE CODE OG15 FOR AN EXTRA 15% OFF // FREE SHIPPING OVER ₹2000 ⚠️ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⚠️ SYSTEM NOTICE: BUNDLE &amp; SAVE — 2-TEE 15% OFF // 3-TEE 25% OFF // 4+ TEE 30% OFF // USE CODE OG15 FOR AN EXTRA 15% OFF // FREE SHIPPING OVER ₹2000 ⚠️
+            ⚠️ SYSTEM NOTICE: DROP 01 ACTIVE — ₹700 OFF EVERY TEE // ₹999 LIMITED-PERIOD PRICE // INVENTORY VERIFIED BY SHOPIFY ⚠️ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⚠️ SYSTEM NOTICE: DROP 01 ACTIVE — ₹700 OFF EVERY TEE // ₹999 LIMITED-PERIOD PRICE // INVENTORY VERIFIED BY SHOPIFY ⚠️
         </div>
     </div>
 
@@ -187,7 +187,7 @@
             <p class="text-xs text-gray-500">HEAVYWEIGHT 240 GSM // UNISEX BLANKS</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
             
             <article class="border border-borderGray bg-cardDark flex flex-col group product-trigger" data-product="coke" tabindex="0" role="button" aria-label="View Mentally Here Rn t-shirt">
                 <div class="aspect-[4/5] bg-black relative overflow-hidden flex items-center justify-center border-b border-borderGray">
@@ -329,7 +329,7 @@
         <div class="flex flex-col md:items-end justify-center text-xs text-gray-500 gap-2">
             <p>SUPPORT: CONTACT@BLUNNT.STORE</p>
             <p>WHATSAPP: +91 75066 35511</p>
-            <p class="text-gray-600 mt-2">HOSTED ON VERCEL // SECURED BY RAZORPAY</p>
+            <p class="text-gray-600 mt-2">HOSTED ON VERCEL // CHECKOUT SECURED BY SHOPIFY</p>
         </div>
     </footer>
 
@@ -404,7 +404,6 @@
         </div>
     </section>
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         // Set this to false when the OG pre-order window closes.
         const PROMO_ENABLED = true;
@@ -547,6 +546,7 @@
         });
         if (location.pathname === '/surprise') document.body.innerHTML = '<main class="surprise-page"><p>Wait for something new and exciting to come. We are trying to get something done.</p></main>';
     </script>
+    <script src="/storefront.js"></script>
 
 </body>
 </html>
