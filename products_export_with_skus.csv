@@ -1,0 +1,84 @@
+"Handle","Title","Body (HTML)","Vendor","Product Category","Type","Tags","Published","Option1 Name","Option1 Value","Option1 Linked To","Option2 Name","Option2 Value","Option2 Linked To","Option3 Name","Option3 Value","Option3 Linked To","Variant SKU","Variant Grams","Variant Inventory Tracker","Variant Inventory Qty","Variant Inventory Policy","Variant Fulfillment Service","Variant Price","Variant Compare At Price","Variant Requires Shipping","Variant Taxable","Unit Price Total Measure","Unit Price Total Measure Unit","Unit Price Base Measure","Unit Price Base Measure Unit","Variant Barcode","Image Src","Image Position","Image Alt Text","Gift Card","SEO Title","SEO Description","Color (product.metafields.shopify.color-pattern)","Fabric (product.metafields.shopify.fabric)","Neckline (product.metafields.shopify.neckline)","Size (product.metafields.shopify.size)","Sleeve length type (product.metafields.shopify.sleeve-length-type)","Target gender (product.metafields.shopify.target-gender)","Top length type (product.metafields.shopify.top-length-type)","Variant Image","Variant Weight Unit","Variant Tax Code","Cost per item","Status"
+"canyon-coffee","CANYON COFFEE","<p>A soft-blue tee for the people who treat coffee like a place, not just a drink. Minimal espresso up front; café-core typography in full view at the back.</p>
+<ul>
+<li>Light blue oversized tee</li>
+<li>Coffee-cup front graphic<br>
+</li>
+<li>240 GSM heavyweight cotton</li>
+<li>Oversized unisex fit</li>
+<li>Ships in 4–7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-CANYON-COFFEE-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front_2e293812-103f-435c-acec-1f2e23e12ac3.png?v=1787083193","1","","false","","","blue","cotton","crew","s; m; l; xl","oversized","unisex","long","","kg","","","active"
+"canyon-coffee","","","","","","","","","m","","","","","","","","BLN-CANYON-COFFEE-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Back_8a13d0bb-54e9-4ad1-835b-935587f96ad5.png?v=1787083192","2","","","","","","","","","","","","","kg","","",""
+"canyon-coffee","","","","","","","","","l","","","","","","","","BLN-CANYON-COFFEE-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug10_2026_01_42_20AM.png?v=1787083192","3","","","","","","","","","","","","","kg","","",""
+"canyon-coffee","","","","","","","","","xl","","","","","","","","BLN-CANYON-COFFEE-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug10_2026_01_42_31AM.png?v=1787083192","4","","","","","","","","","","","","","kg","","",""
+"final-cut","FINAL CUT","<p class=""detail-copy"" id=""detail-description"">“Sonam, it’s done, bro.” A calm front, an extremely committed back, and no director’s commentary.</p>
+<ul class=""detail-list"">
+<li>• 240 GSM heavyweight cotton</li>
+<li>• Oversized unisex fit</li>
+<li>• Screen-printed front and back</li>
+<li>• Ships in 4-7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-FINAL-CUT-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug8_2026_02_45_19AM.png?v=1787081656","1","","false","","","white; beige","cotton","crew","s; m; l; xl","oversized","unisex","long","","kg","","","active"
+"final-cut","","","","","","","","","m","","","","","","","","BLN-FINAL-CUT-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug8_2026_02_46_50AM.png?v=1787081655","2","","","","","","","","","","","","","kg","","",""
+"final-cut","","","","","","","","","l","","","","","","","","BLN-FINAL-CUT-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug8_2026_02_45_54AM.png?v=1787081656","3","","","","","","","","","","","","","kg","","",""
+"final-cut","","","","","","","","","xl","","","","","","","","BLN-FINAL-CUT-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/sku4-flat-back.png?v=1787081655","4","","","","","","","","","","","","","kg","","",""
+"i-moved-on-my-spotify-didnt","I MOVED ON / MY SPOTIFY DIDN'T","<p class=""detail-copy"" id=""detail-description"">Deadpan front text with an oversized streaming logotype on the back. Your top genre remains emotional administrative work.</p>
+<ul class=""detail-list"">
+<li>• 240 GSM heavyweight cotton</li>
+<li>• Oversized unisex fit</li>
+<li>• Screen-printed front and back</li>
+<li>• Ships in 4-7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-I-MOVED-ON-MY-SPOTIFY-DIDNT-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front_13da1782-ceba-4451-9ff4-f4e6a8630ad0.png?v=1787081258","1","","false","","","black","cotton","crew","s; m; l; xl","oversized","unisex","long","","kg","","","active"
+"i-moved-on-my-spotify-didnt","","","","","","","","","m","","","","","","","","BLN-I-MOVED-ON-MY-SPOTIFY-DIDNT-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_back_7496973a-b143-48ec-b719-4df881c6ea47.png?v=1787081258","2","","","","","","","","","","","","","kg","","",""
+"i-moved-on-my-spotify-didnt","","","","","","","","","l","","","","","","","","BLN-I-MOVED-ON-MY-SPOTIFY-DIDNT-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug7_2026_03_11_46AM.png?v=1787081258","3","","","","","","","","","","","","","kg","","",""
+"i-moved-on-my-spotify-didnt","","","","","","","","","xl","","","","","","","","BLN-I-MOVED-ON-MY-SPOTIFY-DIDNT-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug7_2026_03_11_52AM.png?v=1787081258","4","","","","","","","","","","","","","kg","","",""
+"just-be","JUST BE.","<p>Be good. Be bad. Be whatever feels true. A clean off-white tee with a sharp red reminder to stop performing and just exist.</p>
+<ul>
+<li>Off-white oversized tee</li>
+<li>Bold red front statement print</li>
+<li>Minimal, clean back<br>
+</li>
+<li>240 GSM heavyweight cotton</li>
+<li>Oversized unisex fit</li>
+<li>Ships in 4–7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-JUST-BE-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_front_59a0dad7-3085-404d-a112-eb0c96bb177f.png?v=1787083414","1","","false","","","white","cotton","crew","s; m; l; xl","oversized","unisex","","","kg","","","active"
+"just-be","","","","","","","","","m","","","","","","","","BLN-JUST-BE-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_back_8d92d8cb-2d1b-4239-a82a-0cf4eb9c6756.png?v=1787083413","2","","","","","","","","","","","","","kg","","",""
+"just-be","","","","","","","","","l","","","","","","","","BLN-JUST-BE-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug15_2026_02_40_59PM.png?v=1787083414","3","","","","","","","","","","","","","kg","","",""
+"just-be","","","","","","","","","xl","","","","","","","","BLN-JUST-BE-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug15_2026_02_43_19PM.png?v=1787083413","4","","","","","","","","","","","","","kg","","",""
+"mentally-here-rn","MENTALLY HERE RN","<p class=""detail-copy"" id=""detail-description"">Heavyweight red cotton, front-and-back artwork, and a thought that should have stayed in drafts.</p>
+<ul class=""detail-list"">
+<li>• 240 GSM heavyweight cotton</li>
+<li>• Oversized unisex fit</li>
+<li>• Screen-printed front and back</li>
+<li>• Ships in 4-7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-MENTALLY-HERE-RN-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front.png?v=1787081166","1","","false","","","red","cotton","crew","s; m; l; xl","oversized","unisex","long","","kg","","","active"
+"mentally-here-rn","","","","","","","","","m","","","","","","","","BLN-MENTALLY-HERE-RN-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_back.png?v=1787081166","2","","","","","","","","","","","","","kg","","",""
+"mentally-here-rn","","","","","","","","","l","","","","","","","","BLN-MENTALLY-HERE-RN-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/sku1-flat-front.png?v=1787081166","3","","","","","","","","","","","","","kg","","",""
+"mentally-here-rn","","","","","","","","","xl","","","","","","","","BLN-MENTALLY-HERE-RN-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/sku1-flat-back.png?v=1787081167","4","","","","","","","","","","","","","kg","","",""
+"no-one-to-catch","NO ONE TO CATCH","<p>our lane. Your pace. Your rules. A black oversized tee with a bold red reminder that there’s no point racing someone else’s race.</p>
+<ul>
+<li>Black oversized tee</li>
+<li>Bold red front statement print<br>
+</li>
+<li>240 GSM heavyweight cotton</li>
+<li>Oversized unisex fit</li>
+<li>Ships in 4–7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-NO-ONE-TO-CATCH-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front_f42e3712-42f7-434f-b608-91585d11a9f0.png?v=1787083523","1","","false","","","black","cotton","crew","s; xl; l; m","oversized","unisex","long","","kg","","","active"
+"no-one-to-catch","","","","","","","","","xl","","","","","","","","BLN-NO-ONE-TO-CATCH-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Back_ee47576e-78bf-4bd2-9b5d-da0e0c540de2.png?v=1787083523","2","","","","","","","","","","","","","kg","","",""
+"no-one-to-catch","","","","","","","","","l","","","","","","","","BLN-NO-ONE-TO-CATCH-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug15_2026_02_38_15PM.png?v=1787083523","3","","","","","","","","","","","","","kg","","",""
+"no-one-to-catch","","","","","","","","","m","","","","","","","","BLN-NO-ONE-TO-CATCH-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug15_2026_02_38_32PM.png?v=1787083523","4","","","","","","","","","","","","","kg","","",""
+"the-internet-never-forgets","THE INTERNET NEVER FORGETS","<p class=""detail-copy"" id=""detail-description"">A clean black oversized tee with a small front statement. No fade, no acid wash—just a reminder that the internet keeps receipts.</p>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","m","product.metafields.shopify.size","","","","","","","BLN-THE-INTERNET-NEVER-FORGETS-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front_4270a652-fefa-4d0b-b405-83abea437439.png?v=1787081474","1","","false","","","black","","crew","m; s; xl; l","oversized","","long; medium","","kg","","","active"
+"the-internet-never-forgets","","","","","","","","","s","","","","","","","","BLN-THE-INTERNET-NEVER-FORGETS-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Back_c3a8cc50-080f-445c-9778-184c54c77ebd.png?v=1787081474","2","","","","","","","","","","","","","kg","","",""
+"the-internet-never-forgets","","","","","","","","","xl","","","","","","","","BLN-THE-INTERNET-NEVER-FORGETS-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/sku3-flat-front.png?v=1787081474","3","","","","","","","","","","","","","kg","","",""
+"the-internet-never-forgets","","","","","","","","","l","","","","","","","","BLN-THE-INTERNET-NEVER-FORGETS-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/sku3-flat-back.png?v=1787081474","4","","","","","","","","","","","","","kg","","",""
+"the-zero-effect","THE ZERO EFFECT","<p>A zero with main-character energy. Clean on the front, impossible to ignore on the back—because sometimes nothing says everything.</p>
+<ul>
+<li>Off-white oversized tee</li>
+<li>Minimal “Six Zero” chest print</li>
+<li>Oversized halftone zero back graphic</li>
+<li>240 GSM heavyweight cotton</li>
+<li>Oversized unisex fit</li>
+<li>Ships in 4–7 business days</li>
+</ul>","My Store","Apparel & Accessories > Clothing > Clothing Tops > T-Shirts","","","true","Size","s","product.metafields.shopify.size","","","","","","","BLN-THE-ZERO-EFFECT-S","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug19_2026_12_06_58AM.png?v=1787083755","1","","false","","","white","cotton","crew","s; m; l; xl","oversized","unisex","long","","kg","","","active"
+"the-zero-effect","","","","","","","","","m","","","","","","","","BLN-THE-ZERO-EFFECT-M","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug19_2026_12_09_55AM.png?v=1787083755","2","","","","","","","","","","","","","kg","","",""
+"the-zero-effect","","","","","","","","","l","","","","","","","","BLN-THE-ZERO-EFFECT-L","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/ChatGPTImageAug19_2026_12_12_58AM.png?v=1787083755","3","","","","","","","","","","","","","kg","","",""
+"the-zero-effect","","","","","","","","","xl","","","","","","","","BLN-THE-ZERO-EFFECT-XL","500.0","shopify","4","deny","manual","1699.00","","true","true","","","","","","https://cdn.shopify.com/s/files/1/0978/0861/3676/files/Model_Front_61f59b14-8f2f-4bf6-a9b4-1f07fe2134c8.png?v=1787083755","4","","","","","","","","","","","","","kg","","",""

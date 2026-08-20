@@ -1,0 +1,12 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #0A0A0A; color: #D4C5A9; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; line-height: 1.65; }
+a { color: inherit; }
+.policy-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 6vw; border-bottom: 1px solid #343434; position: sticky; top: 0; background: rgba(10,10,10,.96); }
+.brand { font-size: 21px; font-weight: 800; letter-spacing: -.04em; text-decoration: none; }.brand span { color: #FF3B30; }
+.back { color: #B0B0B0; font-size: 12px; text-decoration: none; }.back:hover { color: #FF3B30; }
+main { width: min(780px, 88vw); margin: 0 auto; padding: 72px 0; }
+.eyebrow { color: #FF3B30; font-size: 12px; letter-spacing: .12em; }.updated { color: #8C8C8C; font-size: 12px; margin-bottom: 42px; }
+h1 { font-size: clamp(34px, 7vw, 58px); line-height: 1; letter-spacing: -.07em; margin: 12px 0 16px; } h2 { font-size: 18px; margin: 38px 0 10px; color: #fff; }
+p, li { color: #C4C4C4; font-size: 14px; } ul { padding-left: 20px; } .contact { border: 1px solid #D4C5A9; padding: 18px; margin-top: 38px; }
+footer { border-top: 1px solid #343434; padding: 24px 6vw; color: #8C8C8C; font-size: 11px; }
