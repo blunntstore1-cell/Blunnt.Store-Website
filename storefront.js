@@ -2,6 +2,8 @@
   const catalogEndpoint = '/api/shopify';
   const storageKey = 'blunnt-shopify-cart';
   const grid = document.querySelector('#product-grid');
+  const basicsGrid = document.querySelector('#basics-grid');
+  const basicsSection = document.querySelector('#basics');
   const productModal = document.querySelector('#product-modal');
   const cartModal = document.querySelector('#cart-modal');
   const checkoutModal = document.querySelector('#checkout-modal');
@@ -10,6 +12,7 @@
   const galleryDots = document.querySelector('#gallery-dots');
   const sizePicker = document.querySelector('#size-picker');
   const products = new Map();
+  grid.innerHTML = '<p class="text-xs text-gray-400">LOADING SHOPIFY CATALOGUE…</p>';
   let cart = readCart();
   let selectedProduct = null;
   let selectedVariant = null;
@@ -44,20 +47,35 @@
   function variantForSize(product, size) {
     return product.variants.find(variant => selectedSize(variant) === size);
   }
-  function estimatedPromoPrice(variant) { return Math.max(0, Number(variant.price.amount) - 700); }
+  // Shopify remains the source of truth. The site only previews the active ₹700 launch offer.
+  const launchOfferAmount = 700;
+  function launchPrice(variant) { return Math.max(0, Number(variant.price.amount) - launchOfferAmount); }
+  function priceHtml(variant) {
+    if (!variant) return 'UNAVAILABLE';
+    const { amount, currencyCode } = variant.price;
+    return `${money(launchPrice(variant), currencyCode)} <span class="detail-mrp">${money(amount, currencyCode)}</span>`;
+  }
+  function isBasic(product) { return /\bsolid\b/i.test(`${product.title} ${product.handle}`); }
+  function productCard(product) {
+    const firstVariant = product.variants.find(variant => variant.availableForSale) || product.variants[0];
+    const sizes = product.variants.map(selectedSize);
+    const image = productImages(product)[0];
+    const price = firstVariant ? money(firstVariant.price.amount, firstVariant.price.currencyCode) : 'UNAVAILABLE';
+    const salePrice = firstVariant ? money(launchPrice(firstVariant), firstVariant.price.currencyCode) : 'UNAVAILABLE';
+    return `<article class="border border-borderGray bg-cardDark flex flex-col group product-trigger" data-shopify-product="${escapeHtml(product.handle)}" tabindex="0" role="button" aria-label="View ${escapeHtml(product.title)} t-shirt">
+      <div class="aspect-[4/5] bg-black relative overflow-hidden flex items-center justify-center border-b border-borderGray"><img src="${escapeHtml(image)}" alt="${escapeHtml(product.title)}" class="w-full h-full object-cover"></div>
+      <div class="p-6 flex flex-col flex-grow"><div class="flex justify-between items-start mb-2 gap-2"><h3 class="font-bold text-sm tracking-wide">${escapeHtml(product.title)}</h3><span class="text-errorRed font-bold text-sm text-right"><s class="text-gray-400 font-normal">${price}</s><br>${salePrice}</span></div>
+      <p class="text-xs text-gray-400 mb-6 flex-grow">${escapeHtml(product.description || 'Heavyweight BLUNNT tee. ₹700 offer applied at Shopify checkout.')}</p>
+      <div class="flex gap-1.5 mb-6 text-[10px]">${sizes.map(size => `<span class="border border-borderGray px-2 py-1 text-gray-400">${escapeHtml(size)}</span>`).join('')}</div><button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button></div></article>`;
+  }
 
   function renderProducts() {
-    grid.innerHTML = [...products.values()].map(product => {
-      const firstVariant = product.variants.find(variant => variant.availableForSale) || product.variants[0];
-      const sizes = product.variants.map(selectedSize);
-      const image = productImages(product)[0];
-      const price = firstVariant ? money(firstVariant.price.amount, firstVariant.price.currencyCode) : 'UNAVAILABLE';
-      return `<article class="border border-borderGray bg-cardDark flex flex-col group product-trigger" data-shopify-product="${escapeHtml(product.handle)}" tabindex="0" role="button" aria-label="View ${escapeHtml(product.title)} t-shirt">
-        <div class="aspect-[4/5] bg-black relative overflow-hidden flex items-center justify-center border-b border-borderGray"><img src="${escapeHtml(image)}" alt="${escapeHtml(product.title)}" class="w-full h-full object-cover"></div>
-        <div class="p-6 flex flex-col flex-grow"><div class="flex justify-between items-start mb-2 gap-2"><h3 class="font-bold text-sm tracking-wide">${escapeHtml(product.title)}</h3><span class="text-errorRed font-bold text-sm text-right"><s class="text-gray-400 font-normal">${price}</s><br>₹999</span></div>
-        <p class="text-xs text-gray-400 mb-6 flex-grow">${escapeHtml(product.description || 'Heavyweight BLUNNT tee. Limited period offer applied at checkout.')}</p>
-        <div class="flex gap-1.5 mb-6 text-[10px]">${sizes.map(size => `<span class="border border-borderGray px-2 py-1 text-gray-400">${escapeHtml(size)}</span>`).join('')}</div><button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button></div></article>`;
-    }).join('');
+    const allProducts = [...products.values()];
+    const dropProducts = allProducts.filter(product => !isBasic(product));
+    const basics = allProducts.filter(isBasic);
+    grid.innerHTML = dropProducts.map(productCard).join('') || '<p class="text-xs text-gray-400">NO DROP PRODUCTS AVAILABLE.</p>';
+    if (basicsGrid) basicsGrid.innerHTML = basics.map(productCard).join('');
+    if (basicsSection) basicsSection.hidden = !basics.length;
   }
 
   function renderGallery() {
@@ -71,8 +89,8 @@
   function renderProductModal() {
     document.querySelector('#product-modal-title').textContent = selectedProduct.title;
     document.querySelector('#detail-description').textContent = selectedProduct.description || 'Limited-period offer. Final pricing and availability are confirmed by Shopify at checkout.';
-    const first = selectedProduct.variants[0];
-    document.querySelector('#detail-price').innerHTML = first ? `₹999 <span class="detail-mrp">${money(first.price.amount, first.price.currencyCode)}</span>` : 'UNAVAILABLE';
+    const first = selectedProduct.variants.find(variant => variant.availableForSale) || selectedProduct.variants[0];
+    document.querySelector('#detail-price').innerHTML = priceHtml(first);
     document.querySelector('#limited-offer').hidden = !first;
     sizePicker.innerHTML = selectedProduct.variants.map(variant => {
       const size = selectedSize(variant);
@@ -96,17 +114,17 @@
     const validItems = cart.map(item => ({ ...item, product: products.get(item.handle) })).filter(item => item.product && variantForSize(item.product, item.size));
     if (validItems.length !== cart.length) { cart = validItems.map(({ product, ...item }) => item); saveCart(); }
     const quantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = validItems.reduce((sum, item) => sum + estimatedPromoPrice(variantForSize(item.product, item.size)) * item.quantity, 0);
+    const total = validItems.reduce((sum, item) => sum + launchPrice(variantForSize(item.product, item.size)) * item.quantity, 0);
     document.querySelector('#cart-count').textContent = quantity;
     document.querySelector('#cart-total').textContent = money(total);
-    document.querySelector('#cart-empty').textContent = cart.length ? 'PROMO PRICE IS CONFIRMED BY SHOPIFY AT CHECKOUT.' : 'YOUR BAG IS CURRENTLY EMPTY.';
+    document.querySelector('#cart-empty').textContent = cart.length ? '₹700 OFFER PER TEE IS CONFIRMED BY SHOPIFY AT CHECKOUT.' : 'YOUR BAG IS CURRENTLY EMPTY.';
     document.querySelector('#cart-checkout').disabled = !cart.length;
     document.querySelector('#promo-code').closest('.promo-row').hidden = true;
     document.querySelector('#promo-status').hidden = true;
     document.querySelector('#discount-lines').hidden = true;
     cartItems.innerHTML = validItems.map(item => {
       const variant = variantForSize(item.product, item.size);
-      return `<div class="cart-item"><img src="${escapeHtml(productImages(item.product)[0])}" alt="${escapeHtml(item.product.title)}"><div><strong>${escapeHtml(item.product.title)}</strong><br>SIZE: ${escapeHtml(item.size)} · QTY: ${item.quantity}<br><span class="text-errorRed">₹999 EACH</span></div><button class="cart-remove" type="button" data-shopify-remove="${escapeHtml(item.merchandiseId)}">REMOVE</button></div>`;
+      return `<div class="cart-item"><img src="${escapeHtml(productImages(item.product)[0])}" alt="${escapeHtml(item.product.title)}"><div><strong>${escapeHtml(item.product.title)}</strong><br>SIZE: ${escapeHtml(item.size)} · QTY: ${item.quantity}<br><span class="text-errorRed">${money(launchPrice(variant), variant.price.currencyCode)} EACH</span></div><button class="cart-remove" type="button" data-shopify-remove="${escapeHtml(item.merchandiseId)}">REMOVE</button></div>`;
     }).join('');
   }
 
@@ -139,7 +157,7 @@
     const productCard = event.target.closest('[data-shopify-product]');
     if (productCard) { event.preventDefault(); event.stopImmediatePropagation(); openProduct(productCard.dataset.shopifyProduct); return; }
     const size = event.target.closest('[data-shopify-size]');
-    if (size) { event.preventDefault(); event.stopImmediatePropagation(); selectedVariant = variantForSize(selectedProduct, size.dataset.shopifySize); sizePicker.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', button === size)); document.querySelector('#size-message').textContent = ''; return; }
+    if (size) { event.preventDefault(); event.stopImmediatePropagation(); selectedVariant = variantForSize(selectedProduct, size.dataset.shopifySize); sizePicker.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', button === size)); document.querySelector('#detail-price').innerHTML = priceHtml(selectedVariant); document.querySelector('#size-message').textContent = ''; return; }
     const slide = event.target.closest('[data-shopify-slide]');
     if (slide) { event.preventDefault(); event.stopImmediatePropagation(); activeSlide = Number(slide.dataset.shopifySlide); renderGallery(); return; }
     if (event.target.closest('#start-checkout')) { event.preventDefault(); event.stopImmediatePropagation(); addToCart(); return; }
@@ -159,5 +177,8 @@
     if (!response.ok) throw new Error(result.error || 'Catalog unavailable.');
     result.products.forEach(product => products.set(product.handle, product));
     renderProducts(); renderCart();
-  }).catch(error => { grid.innerHTML = `<p class="text-xs text-errorRed">CATALOGUE UNAVAILABLE. ${escapeHtml(error.message)}</p>`; });
+  }).catch(error => {
+    grid.innerHTML = `<p class="text-xs text-errorRed">CATALOGUE UNAVAILABLE. ${escapeHtml(error.message)}</p>`;
+    if (basicsSection) basicsSection.hidden = true;
+  });
 })();
