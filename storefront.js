@@ -47,13 +47,10 @@
   function variantForSize(product, size) {
     return product.variants.find(variant => selectedSize(variant) === size);
   }
-  // Shopify remains the source of truth. The site only previews the active ₹700 launch offer.
-  const launchOfferAmount = 700;
-  function launchPrice(variant) { return Math.max(0, Number(variant.price.amount) - launchOfferAmount); }
   function priceHtml(variant) {
     if (!variant) return 'UNAVAILABLE';
     const { amount, currencyCode } = variant.price;
-    return `${money(launchPrice(variant), currencyCode)} <span class="detail-mrp">${money(amount, currencyCode)}</span>`;
+    return money(amount, currencyCode);
   }
   function isBasic(product) { return /\bsolid\b/i.test(`${product.title} ${product.handle}`); }
   function productCard(product) {
@@ -61,11 +58,10 @@
     const sizes = product.variants.map(selectedSize);
     const image = productImages(product)[0];
     const price = firstVariant ? money(firstVariant.price.amount, firstVariant.price.currencyCode) : 'UNAVAILABLE';
-    const salePrice = firstVariant ? money(launchPrice(firstVariant), firstVariant.price.currencyCode) : 'UNAVAILABLE';
     return `<article class="border border-borderGray bg-cardDark flex flex-col group product-trigger" data-shopify-product="${escapeHtml(product.handle)}" tabindex="0" role="button" aria-label="View ${escapeHtml(product.title)} t-shirt">
       <div class="aspect-[4/5] bg-black relative overflow-hidden flex items-center justify-center border-b border-borderGray"><img src="${escapeHtml(image)}" alt="${escapeHtml(product.title)}" class="w-full h-full object-cover"></div>
-      <div class="p-6 flex flex-col flex-grow"><div class="flex justify-between items-start mb-2 gap-2"><h3 class="font-bold text-sm tracking-wide">${escapeHtml(product.title)}</h3><span class="text-errorRed font-bold text-sm text-right"><s class="text-gray-400 font-normal">${price}</s><br>${salePrice}</span></div>
-      <p class="text-xs text-gray-400 mb-6 flex-grow">${escapeHtml(product.description || 'Heavyweight BLUNNT tee. ₹700 offer applied at Shopify checkout.')}</p>
+      <div class="p-6 flex flex-col flex-grow"><div class="flex justify-between items-start mb-2 gap-2"><h3 class="font-bold text-sm tracking-wide">${escapeHtml(product.title)}</h3><span class="text-errorRed font-bold text-sm text-right">${price}</span></div>
+      <p class="text-xs text-gray-400 mb-6 flex-grow">${escapeHtml(product.description || 'Heavyweight BLUNNT tee. Pricing and availability are verified by Shopify.')}</p>
       <div class="flex gap-1.5 mb-6 text-[10px]">${sizes.map(size => `<span class="border border-borderGray px-2 py-1 text-gray-400">${escapeHtml(size)}</span>`).join('')}</div><button type="button" class="w-full bg-white text-black text-xs font-bold py-3.5 text-center hover:bg-errorRed hover:text-systemBlack transition tracking-widest">VIEW T-SHIRT</button></div></article>`;
   }
 
@@ -114,17 +110,17 @@
     const validItems = cart.map(item => ({ ...item, product: products.get(item.handle) })).filter(item => item.product && variantForSize(item.product, item.size));
     if (validItems.length !== cart.length) { cart = validItems.map(({ product, ...item }) => item); saveCart(); }
     const quantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = validItems.reduce((sum, item) => sum + launchPrice(variantForSize(item.product, item.size)) * item.quantity, 0);
+    const total = validItems.reduce((sum, item) => sum + Number(variantForSize(item.product, item.size).price.amount) * item.quantity, 0);
     document.querySelector('#cart-count').textContent = quantity;
     document.querySelector('#cart-total').textContent = money(total);
-    document.querySelector('#cart-empty').textContent = cart.length ? '₹700 OFFER PER TEE IS CONFIRMED BY SHOPIFY AT CHECKOUT.' : 'YOUR BAG IS CURRENTLY EMPTY.';
+    document.querySelector('#cart-empty').textContent = cart.length ? 'PRICING AND AVAILABILITY ARE CONFIRMED BY SHOPIFY AT CHECKOUT.' : 'YOUR BAG IS CURRENTLY EMPTY.';
     document.querySelector('#cart-checkout').disabled = !cart.length;
     document.querySelector('#promo-code').closest('.promo-row').hidden = true;
     document.querySelector('#promo-status').hidden = true;
     document.querySelector('#discount-lines').hidden = true;
     cartItems.innerHTML = validItems.map(item => {
       const variant = variantForSize(item.product, item.size);
-      return `<div class="cart-item"><img src="${escapeHtml(productImages(item.product)[0])}" alt="${escapeHtml(item.product.title)}"><div><strong>${escapeHtml(item.product.title)}</strong><br>SIZE: ${escapeHtml(item.size)} · QTY: ${item.quantity}<br><span class="text-errorRed">${money(launchPrice(variant), variant.price.currencyCode)} EACH</span></div><button class="cart-remove" type="button" data-shopify-remove="${escapeHtml(item.merchandiseId)}">REMOVE</button></div>`;
+      return `<div class="cart-item"><img src="${escapeHtml(productImages(item.product)[0])}" alt="${escapeHtml(item.product.title)}"><div><strong>${escapeHtml(item.product.title)}</strong><br>SIZE: ${escapeHtml(item.size)} · QTY: ${item.quantity}<br><span class="text-errorRed">${money(variant.price.amount, variant.price.currencyCode)} EACH</span></div><button class="cart-remove" type="button" data-shopify-remove="${escapeHtml(item.merchandiseId)}">REMOVE</button></div>`;
     }).join('');
   }
 
